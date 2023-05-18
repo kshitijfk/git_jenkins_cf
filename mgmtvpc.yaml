@@ -33,6 +33,7 @@ Resources:
       Tags:
         - Key: Name
           Value: PrivateSubnet
+
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -100,3 +101,15 @@ Resources:
       DestinationCidrBlock: '0.0.0.0/0'
       NatGatewayId: 
          Ref: NATGateway
+
+  PublicSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet
+      RouteTableId: !Ref PublicRouteTable
+
+  PrivateSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PrivateSubnet
+      RouteTableId: !Ref PrivateRouteTable
