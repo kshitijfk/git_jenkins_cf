@@ -86,8 +86,7 @@ Resources:
     Properties:
       SubnetId: 
         Ref: PublicSubnet
-      AllocationId: 
-        Ref: NATGatewayEIP.AllocationId
+      AllocationId: !GetAtt NATGatewayEIP.AllocationId
       Tags:
         - Key: Name
           Value: NATGateway       
