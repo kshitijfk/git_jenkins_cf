@@ -76,6 +76,22 @@ Resources:
       GatewayId: 
          Ref: InternetGateway
 
+  NATGatewayEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+
+  NATGateway:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      SubnetId: 
+        Ref: PublicSubnet
+      AllocationId: 
+        GetAtt: NATGatewayEIP.AllocationId
+      Tags:
+        - Key: Name
+          Value: NATGateway       
+
   PrivateRoute:
     Type: AWS::EC2::Route
     DependsOn: VPCGatewayAttachment
