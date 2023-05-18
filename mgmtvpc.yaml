@@ -2,104 +2,12 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Management VPC with public and private subnets
 
 Resources:
- ManagementVPC:
-  Type: AWS::EC2::VPC
-  Properties:
-    CidrBlock: '10.0.0.0/16'
-    EnableDnsSupport: true
-    EnableDnsHostnames: true
-    Tags:
-      - Key: Name
-        Value: ManagementVPC
-
- PublicSubnet:
-  Type: AWS::EC2::Subnet
-  Properties:
-    VpcId: ManagementVPC.id
-    CidrBlock: '10.0.0.0/24'
-    AvailabilityZone: 'us-west-2a'
-    Tags:
-      - Key: Name
-        Value: PublicSubnet
-
- PrivateSubnet:
-  Type: AWS::EC2::Subnet
-  Properties:
-    VpcId: ManagementVPC.id
-    CidrBlock: '10.0.1.0/24'
-    AvailabilityZone: 'us-west-2b'
-    Tags:
-      - Key: Name
-        Value: PrivateSubnet
-
- InternetGateway:
-  Type: AWS::EC2::InternetGateway
-  Properties:
-    Tags:
-      - Key: Name
-        Value: InternetGateway
-
- VPCGatewayAttachment:
-  Type: AWS::EC2::VPCGatewayAttachment
-  Properties:
-    VpcId: ManagementVPC.id
-    InternetGatewayId: InternetGateway.id
-
- PublicRouteTable:
-  Type: AWS::EC2::RouteTable
-  Properties:
-    VpcId: ManagementVPC.id
-    Tags:
-      - Key: Name
-        Value: PublicRouteTable
-
- PrivateRouteTable:
-  Type: AWS::EC2::RouteTable
-  Properties:
-    VpcId: ManagementVPC.id
-    Tags:
-      - Key: Name
-        Value: PrivateRouteTable
-
- PublicRoute:
-  Type: AWS::EC2::Route
-  DependsOn: VPCGatewayAttachment
-  Properties:
-    RouteTableId: PublicRouteTable.id
-    DestinationCidrBlock: '0.0.0.0/0'
-    GatewayId: InternetGateway.id
-
- PrivateRoute:
-  Type: AWS::EC2::Route
-  DependsOn: VPCGatewayAttachment
-  Properties:
-    RouteTableId: PrivateRouteTable.id
-    DestinationCidrBlock: '0.0.0.0/0'
-    NatGatewayId: NATGateway.id
-
- PublicSubnetRouteTableAssociation:
-  Type: AWS::EC2::SubnetRouteTableAssociation
-  Properties:
-    SubnetId: PublicSubnet.id
-    RouteTableId: PublicRouteTable.id
-
- PrivateSubnetRouteTableAssociation:
-  Type: AWS::EC2::SubnetRouteTableAssociation
-  Properties:
-    SubnetId: PrivateSubnet.id
-    RouteTableId: 
-      Ref: PrivateRouteTable
-
- NATGatewayEIP:
-  Type: AWS::EC2::EIP
-  Properties:
-    Domain: vpc
-
- NATGateway:
-  Type: AWS::EC2::NatGateway
-  Properties:
-    SubnetId: PublicSubnet.id
-    AllocationId: NATGatewayEIP.AllocationId
-    Tags:
-      - Key: Name
-        Value: NATGateway
+  ManagementVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: '10.0.0.0/16'
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: ManagementVPC
