@@ -39,3 +39,49 @@ Resources:
       Tags:
         - Key: Name
           Value: InternetGateway
+
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: 
+        Ref: ManagementVPC
+      InternetGatewayId:  
+        Ref: InternetGateway
+
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: ManagementVPC
+      Tags:
+        - Key: Name
+          Value: PublicRouteTable
+
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: ManagementVPC
+      Tags:
+        - Key: Name
+          Value: PrivateRouteTable
+
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: VPCGatewayAttachment
+    Properties:
+      RouteTableId: 
+         Ref: PublicRouteTable
+      DestinationCidrBlock: '0.0.0.0/0'
+      GatewayId: 
+         Ref: InternetGateway
+
+  PrivateRoute:
+    Type: AWS::EC2::Route
+    DependsOn: VPCGatewayAttachment
+    Properties:
+      RouteTableId: 
+         Ref: PrivateRouteTable
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: 
+         Ref: NATGateway
