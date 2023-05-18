@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Management VPC with public and private subnets
+Description: Management VPC with public and private subnets via integrating git with Jenkins and Jenkins with Cloudformation.
 
 Resources:
   ManagementVPC:
