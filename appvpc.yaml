@@ -11,3 +11,26 @@ Resources:
     Tags:
       - Key: Name
         Value: ApplicationVPC
+
+PublicSubnet1:
+  Type: AWS::EC2::Subnet
+  Properties:
+    VpcId: 
+      Ref: "ApplicationVPC"
+    CidrBlock: '10.0.1.0/24'
+    AvailabilityZone: 'us-west-2a'
+    Tags:
+      - Key: Name
+        Value: PublicSubnet1
+
+PublicSubnet2:
+  Type: AWS::EC2::Subnet
+  Properties:
+    VpcId: 
+      Ref: ApplicationVPC
+    CidrBlock: '10.0.2.0/24'
+    AvailabilityZone: 'us-west-2b'
+    Tags:
+      - Key: Name
+        Value: PublicSubnet2
+
