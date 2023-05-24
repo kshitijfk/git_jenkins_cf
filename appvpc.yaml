@@ -23,3 +23,14 @@ Resources:
       - Key: stack
         Value: production
 
+  PubSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: ApplicationVPC
+      CidrBlock: 192.168.2.0/24
+      AvailabilityZone: "us-west-2b"
+      Tags:
+      - Key: stack
+        Value: production
+
