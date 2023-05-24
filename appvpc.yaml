@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Application VPC with public, private, and data subnets
 
 Resources:
-ApplicationVPC:
+ ApplicationVPC:
   Type: AWS::EC2::VPC
   Properties:
     CidrBlock: '10.0.0.0/16'
