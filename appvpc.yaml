@@ -12,7 +12,7 @@ Resources:
       - Key: Name
         Value: ApplicationVPC
 
-PublicSubnet1:
+PublicSubnetone:
   Type: AWS::EC2::Subnet
   Properties:
     VpcId: 
@@ -23,7 +23,7 @@ PublicSubnet1:
       - Key: Name
         Value: PublicSubnet1
 
-PublicSubnet2:
+PublicSubnettwo:
   Type: AWS::EC2::Subnet
   Properties:
     VpcId: 
