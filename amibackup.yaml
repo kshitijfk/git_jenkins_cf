@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Cloudformation template for creating an AMI of an existing EC2 instance.
+
+Parameters:
+  instanceId:
+     Type: String
+     Description: instance ID of existing VPC
+     Default: i-06624348745209f66
+
+Resources:
+  EC2Image:
+   Type: AWS::EC2::Instance
+   Properties:
+      instanceId:
+        Ref: instanceId
+      Name: MyAMI
+      Description: AMI created from an existing EC2 instance.
+      BlockDeviceMappings:
+        -DeviceName: /dev/sda1
+
+Outputs:
+ AMIId:
+   Value: 
+     Ref: EC2Image
+   Description: The ID of the created AMI  
