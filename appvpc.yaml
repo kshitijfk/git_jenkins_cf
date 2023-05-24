@@ -17,7 +17,7 @@ Resources:
     Properties:
       VpcId: 
        Ref: ApplicationVPC
-      CidrBlock: '10.0.1.0/24'
+      CidrBlock: '10.4.0.0/16'
       AvailabilityZone: 'us-west-2a'
       Tags:
         - Key: Name
