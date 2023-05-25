@@ -22,3 +22,14 @@ Resources:
       Tags:
         - Key: Name
           Value: PublicSubnet
+
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: 
+        Ref: ApplicationVPC
+      CidrBlock: '192.168.2.0/24'
+      AvailabilityZone: 'us-west-2b'
+      Tags:
+        - Key: Name
+          Value: PublicSubnet
