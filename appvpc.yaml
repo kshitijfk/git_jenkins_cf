@@ -93,4 +93,4 @@ Resources:
     Properties:
       SubnetId: 
         Ref: PubSubnet1
-      AllocationId: !GetAtt NATGatewayEIP.AllocationId
+      AllocationId: !GetAtt NATGateway1EIP.AllocationId
