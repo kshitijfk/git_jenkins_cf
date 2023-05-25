@@ -11,21 +11,6 @@ Resources:
     Tags:
       - Key: Name
         Value: ApplicationVPC
-  
-  InternetGateway:
-    Type: AWS::EC2::InternetGateway
-    Properties:
-      Tags:
-        - Key: Name
-          Value: InternetGateway_APP
-
-  VPCGatewayAttachment:
-    Type: AWS::EC2::VPCGatewayAttachment
-    Properties:
-      VpcId: 
-        Ref: ApplicationVPC
-      InternetGatewayId:  
-        Ref: InternetGateway
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
@@ -120,3 +105,10 @@ Resources:
      Type: AWS::EC2::EIP
      Properties:
        Domain: vpc
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: InternetGateway_APP
