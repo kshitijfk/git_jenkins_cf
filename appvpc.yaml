@@ -55,3 +55,25 @@ Resources:
       Tags:
       - Key: stack
         Value: private subnet2
+
+  DataSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: 
+        Ref: ApplicationVPC
+      CidrBlock: 192.168.5.0/24
+      AvailabilityZone: "us-west-2a"
+      Tags:
+      - Key: stack
+        Value: private subnet1
+
+  DataSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+       Ref: ApplicationVPC
+      CidrBlock: 192.168.6.0/24
+      AvailabilityZone: "us-west-2b"
+      Tags:
+      - Key: stack
+        Value: private subnet2
