@@ -134,3 +134,21 @@ Resources:
         AllocationId: !GetAtt NATGateway2EIP.AllocationId
         SubnetId:
           Ref: PubSubnet2
+
+  PrivateRouteTable1:
+     Type: AWS::EC2::RouteTable
+     Properties:
+        VpcId:
+          Ref: ApplicationVPC
+        Tags:
+        - Key: Name
+          Value: PrivateRouteTable1
+
+  PrivateRouteTable2:
+      Type: AWS::EC2::RouteTable
+      Properties:
+         VpcId:
+           Ref: ApplicationVPC
+         Tags:
+         - key: Name
+           Value: PrivateRouteTable2
