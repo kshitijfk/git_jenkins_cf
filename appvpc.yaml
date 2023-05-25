@@ -11,6 +11,39 @@ Resources:
     Tags:
       - Key: Name
         Value: ApplicationVPC
+  
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: InternetGateway_APP
+
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: 
+        Ref: ApplicationVPC
+      InternetGatewayId:  
+        Ref: InternetGateway
+
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: ApplicationVPC
+      Tags:
+        - Key: Name
+          Value: PublicRouteTable
+
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: 
+        Ref: ApplicationVPC
+      Tags:
+        - Key: Name
+          Value: PrivateRouteTable
 
   PubSubnet1:
     Type: AWS::EC2::Subnet
@@ -88,9 +121,9 @@ Resources:
      Properties:
        Domain: vpc
 
-  NATGateway1:
-    Type: AWS::EC2::NatGateway
-    Properties:
-      SubnetId: 
-        Ref: PubSubnet1
+NATGateway:
+   Type: AWS::EC2::NatGateway
+   Properties:
       AllocationId: !GetAtt NATGateway1EIP.AllocationId
+      SubnetId: 
+        Ref: PublicSubnet
