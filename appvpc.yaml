@@ -120,3 +120,10 @@ Resources:
         Ref: ApplicationVPC
       InternetGatewayId:  
         Ref: InternetGateway
+
+  NatGateway1:
+     Type: AWS::EC2::NatGateway
+     Properties:
+        AllocationId: !GetAtt NATGateway1EIP.AllocationId
+        SubnetId:
+          Ref: PubSubnet1
