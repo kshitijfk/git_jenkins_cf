@@ -112,3 +112,11 @@ Resources:
       Tags:
         - Key: Name
           Value: InternetGateway_APP
+
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: 
+        Ref: ApplicationVPC
+      InternetGatewayId:  
+        Ref: InternetGateway
