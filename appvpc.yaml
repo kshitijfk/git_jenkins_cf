@@ -87,3 +87,10 @@ Resources:
      Type: AWS::EC2::EIP
      Properties:
        Domain: vpc
+
+  NATGateway1:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      SubnetId: 
+        Ref: PubSubnet1
+      AllocationId: !GetAtt NATGatewayEIP.AllocationId
